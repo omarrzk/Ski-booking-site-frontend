@@ -1,0 +1,23 @@
+<div>
+        <ul>
+            <li *ngFor="let pack of packages">
+            <div class="link">
+                <div class="img">
+                    
+    <img [src]="pack.imageUrl" />
+                </div>
+                
+               <div class="desc">
+                <h5>{{pack?.header}}</h5>
+                <p>{{pack?.description}}</p>
+                <div *ngIf="viewMore && viewMore.id === pack.id" [innerHTML]="viewMore?.extendedDescription"></div>
+                <div class="buttons">
+                    <button class="view" (click)="onView(pack)">{{viewMore && viewMore.id === pack.id ? 'Se mindre' : 'Visa mer'}}</button>
+                    <button class="btn2" (click)="onSelect(pack)">Välj</button>
+                </div>
+               
+               </div>
+            </div>
+        </li>
+        </ul>
+</div>

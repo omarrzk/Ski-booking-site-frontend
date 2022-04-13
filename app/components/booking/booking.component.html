@@ -1,0 +1,27 @@
+<!-- Namn form för bokning -->
+<form [formGroup]="nameForm" *ngIf="!confirmValue">
+    <h4 class="center">Bokningsformulär</h4>
+    <h5 class="center">{{selectedPackage?.header}}</h5>
+    <span class="spnForm">
+        <label>Namn :</label> 
+        <input type="text" placeholder="Ange namn" formControlName="name" />
+       <p *ngIf="nameForm.controls['name'].hasError('required') && nameForm.controls['name'].touched">Namn krävs*</p>
+    </span>
+
+    <div class="btn-style">
+        <button (click)="onCancel()">Avbryt</button>
+        <button (click)="onReserve()" [disabled]="nameForm.value.name === ''">Boka</button>
+    </div>
+     
+</form>
+<!-- Namn Form avslut -->
+<!-- bokningsbekräftelse -->
+<div *ngIf="confirmValue">
+    <h4 class="center">Bokningsbekräftelse</h4>
+    <h5 class="center">Din bokning är nu genomförd</h5>
+    <h5 class="center">Bokningsnummer: {{confirmValue?.confirmationNumber}}</h5>
+    <h5 class="center">Ditt Bokningsnamn : {{confirmValue?.name}}</h5>
+    <div class="btn-style">
+        <button (click)="onCancel()">Gå tillbaka</button>
+    </div>
+</div>
